@@ -73,7 +73,7 @@ function updateOrder(clean) {
     orderList.innerHTML = "";
   }
   order = [];
-  //EN VALUE PONER MI GITHUB CUANDO LO SUBA.
+  
   form.innerHTML =
     '<input type="hidden" name="_next" value=""><input type="hidden" name="_captcha" value="false">';
   let listItems = document.querySelectorAll(".list-group-item");
