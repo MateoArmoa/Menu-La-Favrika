@@ -408,27 +408,27 @@ showOrderBtn.addEventListener("click", () => toggleOrder());
 sendOrderBtn.addEventListener("click", () => {
   let listItems = document.querySelectorAll(".list-group-item");
   for (let i = 0; i < listItems.length; i++) {
-    let factor = 150;
-    let time = i * factor;
-    setTimeout(() => {
-      listItems[i].classList.add("send-item");
-      if (i == listItems.length - 1) {
-        setTimeout(() => {
-          totalCostContainer.classList.add("send-item");
-          setTimeout(() => {
-            Swal.fire({
-              title: "Pedido enviado",
-              text: "En caso de requerirlo puede realizar otro pedido.",
-              icon: "success",
-              confirmButtonText: "Aceptar",
-            });
-            console.dir(form);
-            form.submit();
-            updateOrder("clean");
-          }, 300);
-        }, factor);
-      }
-    }, time);
+      let factor = 150;
+      let time = i*factor;
+      setTimeout(() => {
+          listItems[i].classList.add("send-item");
+          if (i == listItems.length-1) {
+              setTimeout(() => {
+                  totalCostContainer.classList.add("send-item");
+                  setTimeout(() => {
+                      Swal.fire({
+                          title: 'Pedido enviado',
+                          text: 'En caso de requerirlo puede realizar otro pedido.',
+                          icon: 'success',
+                          confirmButtonText: 'Aceptar',
+                      });
+                      console.dir(form);
+                      form.submit();
+                      updateOrder("clean");
+                  }, 300);
+              }, factor);
+          }
+      }, time);
   }
 });
 
