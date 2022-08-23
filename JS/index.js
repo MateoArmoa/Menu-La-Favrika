@@ -1,40 +1,49 @@
 let menuItems,
   rowEntradas = document.querySelector("#row-entradas");
-  rowPrincipales = document.querySelector("#row-principales");
-  rowPostres = document.querySelector("#row-postres");
-  rowBebidas = document.querySelector("#row-bebidas");
-  settingsList = document.querySelector("#settings-list");
-  orderList = document.querySelector("#order-list");
-  showOrderBtn = document.querySelector("#show-order-btn");
-  orderContainer = document.querySelector("#order-container");
-  counter = document.querySelector("#counter");
-  sendOrderBtn = document.querySelector("#send-order-btn");
-  totalCost = document.querySelector("#total-cost");
-  front = document.querySelector("#front");
-  showMenuBtn = document.querySelector("#show-menu-btn");
-  alert = document.querySelector("#alert");
-  settingsBtn = document.querySelector("#settings-btn");
-  logInContainer = document.querySelector("#log-in-container");
-  cancelLogInBtn = document.querySelector("#cancel-log-in-btn");
-  logInBtn = document.querySelector("#log-in-btn");
-  settingsContainer = document.querySelector("#settings-container");
-  saveSettingsBtn = document.querySelector("#save-settings-btn");
-  cancelSettingsBtn = document.querySelector("#cancel-settings-btn");
-  order = [];
-  homeBtn = document.querySelector("#home-btn");
-  userInput = document.querySelector("#user-input");
-  passInput = document.querySelector("#pass-input");
-  rememberCheck = document.querySelector("#remember-check");
-  rejectedMessage = document.querySelector("#rejected-message");
-  validUser = { user: "mateoarmoa@hotmail.com", pass: "lafavrika" };
-  getUserData = JSON.parse(localStorage.getItem("userData"));
-  totalCostContainer = document.querySelector("#total-cost-container");
-  form = document.querySelector("#form");
+rowPrincipales = document.querySelector("#row-principales");
+rowPostres = document.querySelector("#row-postres");
+rowBebidas = document.querySelector("#row-bebidas");
+settingsList = document.querySelector("#settings-list");
+orderList = document.querySelector("#order-list");
+showOrderBtn = document.querySelector("#show-order-btn");
+orderContainer = document.querySelector("#order-container");
+counter = document.querySelector("#counter");
+sendOrderBtn = document.querySelector("#send-order-btn");
+totalCost = document.querySelector("#total-cost");
+front = document.querySelector("#front");
+showMenuBtn = document.querySelector("#show-menu-btn");
+alert = document.querySelector("#alert");
+settingsBtn = document.querySelector("#settings-btn");
+logInContainer = document.querySelector("#log-in-container");
+cancelLogInBtn = document.querySelector("#cancel-log-in-btn");
+logInBtn = document.querySelector("#log-in-btn");
+settingsContainer = document.querySelector("#settings-container");
+saveSettingsBtn = document.querySelector("#save-settings-btn");
+cancelSettingsBtn = document.querySelector("#cancel-settings-btn");
+order = [];
+homeBtn = document.querySelector("#home-btn");
+userInput = document.querySelector("#user-input");
+passInput = document.querySelector("#pass-input");
+rememberCheck = document.querySelector("#remember-check");
+rejectedMessage = document.querySelector("#rejected-message");
+validUser = { user: "mateoarmoa@hotmail.com", pass: "lafavrika" };
+getUserData = JSON.parse(localStorage.getItem("userData"));
+totalCostContainer = document.querySelector("#total-cost-container");
+form = document.querySelector("#form");
+//CLASE PARA CREAR ITEMS DEL PEDIDO
+class OrderItem {
+  constructor(description, price) {
+    this.description = description;
+    this.price = price;
+  }
+}
+
+/* --------- */
 /* FUNCIONES */
 /* --------- */
 //FUNCIONES PARA LEVANTAR LISTA DE PRODUCTOS
 async function getData() {
-  const response = await fetch("./JS/menu.js");
+  const response = await fetch("JS/menu.json");
   menuItems = await response.json();
   createMenuAndSettings(menuItems);
 }
@@ -73,9 +82,8 @@ function updateOrder(clean) {
     orderList.innerHTML = "";
   }
   order = [];
-  
   form.innerHTML =
-    '<input type="hidden" name="_next" value=""><input type="hidden" name="_captcha" value="false">';
+    '<input type="hidden" name="_next" value="lafavrika"><input type="hidden" name="lafavrika" value="false">';
   let listItems = document.querySelectorAll(".list-group-item");
   let prices = [];
   listItems.forEach((el, index) => {
