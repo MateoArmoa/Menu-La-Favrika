@@ -102,7 +102,7 @@ function updateOrder(clean) {
   }
 }
 
-//FUNCION PARA CONSTRUIR ITEMS DEL MENU
+//ITEMS DEL MENU
 function createMenuCard(type, description, price, available, source) {
   //CREAR DIV COL. INSERTAR EN DIV ROW (VER TYPE)
   let divCol = document.createElement("div");
@@ -127,7 +127,7 @@ function createMenuCard(type, description, price, available, source) {
   divCard.classList.add("card", "mx-auto");
   divCol.appendChild(divCard);
 
-  //CREAR IMG. INSERTAR EN CARD
+  //IMAGEN EN EL CARD
   let cardImg = document.createElement("img");
   cardImg.classList.add("card-img-top");
   cardImg.src = source;
@@ -139,7 +139,7 @@ function createMenuCard(type, description, price, available, source) {
   cardBody.classList.add("card-body");
   divCard.appendChild(cardBody);
 
-  //CREAR H5 CARD-TITLE. INSERTAR EN CARD-BODY
+  //TEXTO EN H5 PARA EL CARD-BODY
   let cardTitle = document.createElement("h5");
   cardTitle.classList.add("card-title");
   cardTitle.textContent = description;
@@ -383,9 +383,8 @@ function hideSection(section) {
   }, 1000);
 }
 
-/* --------- */
+
 /* EJECUCION */
-/* --------- */
 //LEVANTAR PEDIDO DE SESSION STORAGE
 takeOrder();
 
