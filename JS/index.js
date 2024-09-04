@@ -383,7 +383,6 @@ function hideSection(section) {
   }, 1000);
 }
 
-
 /* EJECUCION */
 //LEVANTAR PEDIDO DE SESSION STORAGE
 takeOrder();
@@ -405,51 +404,33 @@ showOrderBtn.addEventListener("click", () => toggleOrder());
 
 //AGREGAR FUNCIONALIDAD AL BOTON ENVIAR PEDIDO
 sendOrderBtn.addEventListener("click", () => {
+  let listItems = document.querySelectorAll(".list-group-item");
 
-letlistItems=document.querySelectorAll(".list-group-item");
+  for (let i = 0; i < listItems.length; i++) {
+    let factor = 150;
+    let time = i * factor;
 
-for (leti=0; i<listItems.length; i++) {
+    setTimeout(() => {
+      listItems[i].classList.add("send-item");
 
-letfactor=150;
+      if (i == listItems.length - 1) {
+        totalCostContainer.classList.add("send-item");
 
-lettime=i*factor;
-
-setTimeout(() => {
-
-listItems[i].classList.add("send-item");
-
-if (i==listItems.length-1) {
-
-totalCostContainer.classList.add("send-item");
-
-Swal.fire({
-
-title: 'Pedido enviado',
-
-text: 'En caso de requerirlo puede realizar otro pedido.',
-
-icon: 'success',
-
-confirmButtonText: 'Aceptar',
-
+        Swal.fire({
+          title: "Pedido enviado",
+          text: "En caso de requerirlo puede realizar otro pedido.",
+          icon: "success",
+          confirmButtonText: "Aceptar",
         });
 
-setTimeout(() => {
-
-console.dir(form);
-
-form.submit();
-
-updateOrder("clean");
-
+        setTimeout(() => {
+          console.dir(form);
+          form.submit();
+          updateOrder("clean");
         }, 2000);
-
       }
-
     }, time);
-
   }
-
 });
 
 //AGREGAR FUNCIONALIDAD AL BOTON SETTINGS
